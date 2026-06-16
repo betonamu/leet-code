@@ -19,7 +19,7 @@ var lengthOfLongestSubstring = function (s) {
     }
     return Math.max(maxLength, unique.length);
 };
-
-//gặp kí tự lặp thì find index lấy index lặp thì tính lại max rồi cắt từ 0 -> index
+//Thuật toán sliding window
+//gặp kí tự lặp thì tính lại max find index lấy index lặp thì rồi cắt từ 0 -> index + 1
 //sau đó tiếp tục insert phần tử mới vào
 //ngược lại thì insert như bình thường

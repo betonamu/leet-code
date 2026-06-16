@@ -24,8 +24,8 @@ var longestPalindrome = function (s) {
             left2--;
             right2++;
         }
-        let curr = currPdrm2.length > currPdrm1.length ? currPdrm2 : currPdrm1;
-        palindromic = curr.length > palindromic.length ? curr : palindromic;
+        let longer = currPdrm2.length > currPdrm1.length ? currPdrm2 : currPdrm1;
+        if (longer.length > palindromic.length) palindromic = longer;
     }
     return palindromic;
 };

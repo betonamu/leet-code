@@ -3,18 +3,23 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-    const uniqueSubstring = [];
+    if (!s.length) return 0;
+
     let maxLength = 0;
+    let unique = [];
     for (let i = 0; i < s.length; i++) {
-        if (uniqueSubstring.includes(s[i])) {
-            maxLength = Math.max(maxLength, uniqueSubstring.length);
-            let dupIdx = uniqueSubstring.findIndex((char) => char === s[i]);
-            uniqueSubstring.splice(0, dupIdx + 1);
-            uniqueSubstring.push(s[i]);
+        if (unique.includes(s[i])) {
+            maxLength = Math.max(maxLength, unique.length);
+            unique.push(s[i]);
+            let idx = unique.findIndex(item => item === s[i]);
+            unique.splice(0, idx + 1);
         } else {
-            uniqueSubstring.push(s[i]);
+            unique.push(s[i]);
         }
     }
-
-    return maxLength = Math.max(maxLength, uniqueSubstring.length);
+    return Math.max(maxLength, unique.length);
 };
+
+//gặp kí tự lặp thì find index lấy index lặp thì tính lại max rồi cắt từ 0 -> index
+//sau đó tiếp tục insert phần tử mới vào
+//ngược lại thì insert như bình thường

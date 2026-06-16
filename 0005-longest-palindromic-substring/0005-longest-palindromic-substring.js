@@ -38,3 +38,5 @@ var longestPalindrome = function (s) {
 //trường hợp 2: bắt đầu với left = i, right = i + 1 (giả sử chúng ta có tâm kép s[i] === s[i + 1])
 //nếu giá trị tại left và right vẫn còn bằng nhau thì tiếp tục mở rộng bằng cách left--, right++
 //sau khi mở rộng thì phải set lại giá trị cho palindromic
+
+//lưu ý khống chế phạm vi left, right trường hợp s.length = 1. nếu không nó sẽ mở rộng vô tận vì undefined == undefined

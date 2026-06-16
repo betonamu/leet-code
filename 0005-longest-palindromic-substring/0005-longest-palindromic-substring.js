@@ -3,27 +3,22 @@
  * @return {string}
  */
 var longestPalindrome = function (s) {
-    if (!s.length) return "";
-
-    let palindromic = "";
-    for (let i = 0; i < s.length; i++) {
-        let left = i;
-        let right = i;
-        let currPdrm1 = "";
+    const expand = (left, right) => {
+        let curr = "";
         while (s[left] === s[right] && left >= 0 && right < s.length) {
-            currPdrm1 = s.slice(left, right + 1);
+            curr = s.slice(left, right + 1);
             left--;
             right++;
         }
 
-        let left2 = i;
-        let right2 = i + 1;
-        let currPdrm2 = "";
-        while (s[left2] === s[right2] && left2 >= 0 && right2 < s.length) {
-            currPdrm2 = s.slice(left2, right2 + 1);
-            left2--;
-            right2++;
-        }
+        return curr;
+    }
+    if (!s.length) return "";
+
+    let palindromic = "";
+    for (let i = 0; i < s.length; i++) {
+        let currPdrm1 = expand(i, i);
+        let currPdrm2 = expand(i, i + 1);
         let longer = currPdrm2.length > currPdrm1.length ? currPdrm2 : currPdrm1;
         if (longer.length > palindromic.length) palindromic = longer;
     }

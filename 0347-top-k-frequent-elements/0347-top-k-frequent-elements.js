@@ -16,7 +16,5 @@ var topKFrequent = function (nums, k) {
         }
     }
     const entriesArray = [...map.entries()];
-
-    console.log(entriesArray);
     return entriesArray.sort(([, a], [, b]) => b - a).slice(0, k).map(([key, value]) => key);
 };

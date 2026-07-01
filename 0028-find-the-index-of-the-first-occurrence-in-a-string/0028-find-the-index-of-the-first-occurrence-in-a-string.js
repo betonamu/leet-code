@@ -9,7 +9,6 @@ var strStr = function (haystack, needle) {
     let left = 0;
     for (let right = needle.length - 1; right < haystack.length; right++) {
         let currentRange = haystack.slice(left, right + 1);
-        console.log({ currentRange, needle })
         if (currentRange === needle) {
             return left;
         } else {

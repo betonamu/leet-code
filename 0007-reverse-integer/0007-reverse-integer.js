@@ -5,8 +5,7 @@
 var reverse = function (x) {
     if (!x) return 0;
 
-    let isNegative = x * -1 > 0;
-    let left = isNegative ? 1 : 0;
+    let left = x * -1 > 0 ? 1 : 0;
 
     let result = x.toString().split("");
     let right = result.length - 1;

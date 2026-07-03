@@ -20,10 +20,10 @@ var reverse = function (x) {
 
     const MIN_INT = -Math.pow(2, 31);
     const MAX_INT = Math.pow(2, 31) - 1;
-    let finalResult = Number(result.join(""));
-    if (finalResult < MIN_INT || finalResult > MAX_INT) {
+    let reversed = Number(result.join(""));
+    if (reversed < -Math.pow(2, 31) || reversed > Math.pow(2, 31) - 1) {
         return 0;
     }
 
-    return finalResult;
+    return reversed;
 };

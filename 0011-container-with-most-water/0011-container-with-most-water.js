@@ -3,19 +3,21 @@
  * @return {number}
  */
 var maxArea = function (height) {
-    if (!height.length) return 0;
-
     let left = 0;
     let right = height.length - 1;
-    let gap = right - left;
-    let max = Math.min(height[left], height[right]) * gap;
+    let maxArea = 0;
     while (left < right) {
-        height[left] < height[right] ? left++ : right--;
-
+        const lower = Math.min(height[left], height[right]);
         let gap = right - left;
-        let currArea = Math.min(height[left], height[right]) * gap;
-        max = Math.max(currArea, max);
+        let currArea = gap * lower;
+        if (currArea > maxArea) {
+            maxArea = currArea;
+        }
+
+        height[left] > height[right] ? right-- : left++;
     }
 
-    return max;
+    return maxArea;
 };
+
+// Approach: Two-pointer contraction Algorithm

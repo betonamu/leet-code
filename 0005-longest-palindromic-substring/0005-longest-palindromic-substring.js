@@ -3,35 +3,32 @@
  * @return {string}
  */
 var longestPalindrome = function (s) {
-    const expand = (left, right) => {
-        let curr = "";
-        while (s[left] === s[right] && left >= 0 && right < s.length) {
-            curr = s.slice(left, right + 1);
-            left--;
-            right++;
-        }
-
-        return curr;
-    }
     if (!s.length) return "";
 
-    let palindromic = "";
-    for (let i = 0; i < s.length; i++) {
-        let currPdrm1 = expand(i, i);
-        let currPdrm2 = expand(i, i + 1);
-        let longer = currPdrm2.length > currPdrm1.length ? currPdrm2 : currPdrm1;
-        if (longer.length > palindromic.length) palindromic = longer;
+    const expand = (left, right) => {
+        let current = "";
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+            current = s.slice(left, right + 1);
+            left--;
+            right++
+        }
+
+        return current;
     }
-    return palindromic;
+
+    let result = "";
+    for (let i = 0; i < s.length; i++) {
+        let palindrome1 = expand(i, i);
+        let palindrome2 = expand(i, i + 1);
+        let longer = palindrome1.length > palindrome2.length ? palindrome1 : palindrome2;
+        if (longer.length > result.length) result = longer;
+    }
+
+    return result;
 };
 
-//Sử dụng thuật toán 2 con trỏ mở rộng từ tâm ra ngoài
-//trường hợp 1: bắt đầu với left, right = i (chúng ta xem i là tâm)
-//nếu giá trị tại left và right vẫn còn bằng nhau thì tiếp tục mở rộng bằng cách left--, right++
-//sau khi mở rộng thì phải set lại giá trị cho palindromic
-
-//trường hợp 2: bắt đầu với left = i, right = i + 1 (giả sử chúng ta có tâm kép s[i] === s[i + 1])
-//nếu giá trị tại left và right vẫn còn bằng nhau thì tiếp tục mở rộng bằng cách left--, right++
-//sau khi mở rộng thì phải set lại giá trị cho palindromic
-
-//lưu ý khống chế phạm vi left, right trường hợp s.length = 1. nếu không nó sẽ mở rộng vô tận vì undefined == undefined
+// Approach:  two-pointer expansion algorithm
+// This problem has 2 cases like example 1 & 2:
+// Case 1: i value != i + 1 value (two side symmetry)
+// Case 2: i value == i + 1 value (center of symmetry)
+// Boundary check: limit two pointer from 0 -> length bacause of undefined === undefined so left value always equal to right value

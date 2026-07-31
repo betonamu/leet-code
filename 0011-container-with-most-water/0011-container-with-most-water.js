@@ -20,4 +20,8 @@ var maxArea = function (height) {
     return maxArea;
 };
 
-// Approach: Two-pointer contraction Algorithm
+// Approach: Two-Pointer Contraction
+// Step 1: Calculate width = right - left
+// Step 2: Find minimum height = min(height[left], height[right])
+// Step 3: Calculate current area = width * minimum height
+// Step 4: Move the shorter line inward (if height[left] < height[right] -> left++, else -> right--)
